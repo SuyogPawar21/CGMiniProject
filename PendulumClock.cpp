@@ -70,12 +70,25 @@ void BresenhamCircleDrawingAlgo(float Cx, float Cy, float radius) {
 	}
 }
 
-
 void pendulumClock() {
+	BresenhamCircleDrawingAlgo(0, 200, 150);
+	BresenhamCircleDrawingAlgo(0, 200, 125);
+	
+	int length = 15;
+	drawLine(110, 200 , 110 + length, 200);
+	drawLine(-110, 200, -110 - length, 200);
+	drawLine(0, 310, 0, 310 + length);
+	drawLine(0, 90, 0, 90 - length);
+	
+	drawLine(0, 200, -50 * sin(degreeToRadian(15.0)), 200 - 50 * cos(degreeToRadian(15.9)));
+	drawLine(0, 200, 100, 200);
+}
+
+void pendulum() {
 	
 	for (float degree = 45.0; degree > -45.1; degree -= 0.01) {
 		glClear(GL_COLOR_BUFFER_BIT);
-		BresenhamCircleDrawingAlgo(0, 200, 150);
+		pendulumClock();
 		drawLine(0, 50, -270 * sin(degreeToRadian(degree)), 50 - 270 * cos(degreeToRadian(degree)));
 		BresenhamCircleDrawingAlgo(-300 * sin(degreeToRadian(degree)),
 		 50 - 300 * cos(degreeToRadian(degree)), 30);
@@ -84,21 +97,21 @@ void pendulumClock() {
 	}
 	for (float degree = -45.0; degree < 45.1; degree += 0.01) {
 		glClear(GL_COLOR_BUFFER_BIT);
-		BresenhamCircleDrawingAlgo(0, 200, 150);
+		pendulumClock();
 		drawLine(0, 50, -270 * sin(degreeToRadian(degree)), 50 - 270 * cos(degreeToRadian(degree)));
 		BresenhamCircleDrawingAlgo(-300 * sin(degreeToRadian(degree)),
 		 50 - 300 * cos(degreeToRadian(degree)), 30);
 		
 		glutSwapBuffers();
 	}
-	pendulumClock();
+	pendulum();
 }
 
 
 void myDisplay() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0, 1.0, 1.0);
-	pendulumClock();
+	pendulum();
 	glutSwapBuffers();
 }
 
