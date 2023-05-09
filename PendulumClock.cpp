@@ -12,7 +12,7 @@ int windowWidth, windowHeight;
 // Utility function to draw a point
 void drawPoint(float x, float y) {
 	glBegin(GL_POINTS);
-		glVertex2f(x, y);
+	glVertex2f(x, y);
 	glEnd();
 }
 
@@ -70,21 +70,23 @@ void BresenhamCircleDrawingAlgo(float Cx, float Cy, float radius) {
 
 void pendulumClock() {
 	
-	for (float degree = 45.0; degree > -45.1; degree -= 0.03) {
+	for (float degree = 45.0; degree > -45.1; degree -= 0.01) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		BresenhamCircleDrawingAlgo(0, 200, 150);
 		drawLine(0, 50, -270 * sin(degreeToRadian(degree)), 50 - 270 * cos(degreeToRadian(degree)));
-		BresenhamCircleDrawingAlgo(-300 * sin(degreeToRadian(degree)), 50 - 300 * cos(degreeToRadian(degree)), 30);
+		BresenhamCircleDrawingAlgo(-300 * sin(degreeToRadian(degree)),
+		 50 - 300 * cos(degreeToRadian(degree)), 30);
 		
-		glFlush();
+		glutSwapBuffers();
 	}
-	for (float degree = -45.0; degree < 45.1; degree += 0.03) {
+	for (float degree = -45.0; degree < 45.1; degree += 0.01) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		BresenhamCircleDrawingAlgo(0, 200, 150);
 		drawLine(0, 50, -270 * sin(degreeToRadian(degree)), 50 - 270 * cos(degreeToRadian(degree)));
-		BresenhamCircleDrawingAlgo(-300 * sin(degreeToRadian(degree)), 50 - 300 * cos(degreeToRadian(degree)), 30);
+		BresenhamCircleDrawingAlgo(-300 * sin(degreeToRadian(degree)),
+		 50 - 300 * cos(degreeToRadian(degree)), 30);
 		
-		glFlush();
+		glutSwapBuffers();
 	}
 	pendulumClock();
 }
@@ -94,12 +96,12 @@ void myDisplay() {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0, 1.0, 1.0);
 	pendulumClock();
-	glFlush();
+	glutSwapBuffers();
 }
 
 
 void Init() {
-	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glMatrixMode(GL_PROJECTION);
 	gluOrtho2D(-windowWidth/2, windowWidth/2, -windowHeight/2, windowHeight/2);
