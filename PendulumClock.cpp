@@ -1,7 +1,9 @@
 #include <GL/glut.h>
 #include <cmath>
 #include <stdlib.h>
+#include <iostream>
 
+using namespace std;
 
 // Global Variables for storing window dimensions.
 int windowWidth, windowHeight;
@@ -67,11 +69,15 @@ void BresenhamCircleDrawingAlgo(float Cx, float Cy, float radius) {
 
 
 void pendulumClock() {
-	BresenhamCircleDrawingAlgo(0, 200, 150);
-	drawLine(0, 50, 0, -220);
-	drawLine(0, 50, -270 * sin(degreeToRadian(45)), 50 - 270 * cos(degreeToRadian(45)));
-	BresenhamCircleDrawingAlgo(0, -250, 30);
-	BresenhamCircleDrawingAlgo(-300 * sin(degreeToRadian(45)), 50 - 300 * cos(degreeToRadian(45)), 30);
+	
+	for (float degree = 45.0; degree > -45.1; degree -= 0.01) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		BresenhamCircleDrawingAlgo(0, 200, 150);
+		drawLine(0, 50, -270 * sin(degreeToRadian(degree)), 50 - 270 * cos(degreeToRadian(degree)));
+		BresenhamCircleDrawingAlgo(-300 * sin(degreeToRadian(degree)), 50 - 300 * cos(degreeToRadian(degree)), 30);
+		
+		glFlush();
+	}
 	
 }
 
