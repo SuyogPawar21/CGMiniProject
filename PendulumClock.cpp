@@ -31,23 +31,26 @@ void drawLine(int x1, int y1, int x2, int y2) {
 
 
 void drawPointInAllQuadrants(float x, float y, float Cx, float Cy) {
-	// First Quadrant
-	drawPoint(x + Cx, y + Cy);
-	drawPoint(y + Cx, x + Cy);
-	
-	// Second Quadrant
-	drawPoint(-x + Cx, y + Cy);
-	drawPoint(-y + Cx, x + Cy);
-	
-	// Third Quadrant
-	drawPoint(-x + Cx, -y + Cy);
-	drawPoint(-y + Cx, -x + Cy);
-	
-	// Fourth Quadrant
-	drawPoint(x + Cx, -y + Cy);
-	drawPoint(y + Cx, -x + Cy);
-}
+    // First Quadrant
+    float x1 = x + Cx, y1 = y + Cy, x2 = y + Cx, y2 = x + Cy;
+    drawPoint(x1, y1);
+    drawPoint(x2, y2);
 
+    // Second Quadrant
+    x1 = -x + Cx; x2 = -y + Cx; 
+    drawPoint(x1, y1);
+    drawPoint(x2, y2);
+
+    // Third Quadrant
+    y1 = -y + Cy; y2 = -x + Cy;
+    drawPoint(x1, y1);
+    drawPoint(x2, y2);
+
+    // Fourth Quadrant
+    x1 = x + Cx; x2 = y + Cx; 
+    drawPoint(x1, y1);
+    drawPoint(x2, y2);
+}
 
 void BresenhamCircleDrawingAlgo(float Cx, float Cy, float radius) {
 	float pk = 3 - (2 * radius);
