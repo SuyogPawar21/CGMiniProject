@@ -70,7 +70,7 @@ void BresenhamCircleDrawingAlgo(float Cx, float Cy, float radius) {
 
 void pendulumClock() {
 	
-	for (float degree = 45.0; degree > -45.1; degree -= 0.01) {
+	for (float degree = 45.0; degree > -45.1; degree -= 0.03) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		BresenhamCircleDrawingAlgo(0, 200, 150);
 		drawLine(0, 50, -270 * sin(degreeToRadian(degree)), 50 - 270 * cos(degreeToRadian(degree)));
@@ -78,7 +78,15 @@ void pendulumClock() {
 		
 		glFlush();
 	}
-	
+	for (float degree = -45.0; degree < 45.1; degree += 0.03) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		BresenhamCircleDrawingAlgo(0, 200, 150);
+		drawLine(0, 50, -270 * sin(degreeToRadian(degree)), 50 - 270 * cos(degreeToRadian(degree)));
+		BresenhamCircleDrawingAlgo(-300 * sin(degreeToRadian(degree)), 50 - 300 * cos(degreeToRadian(degree)), 30);
+		
+		glFlush();
+	}
+	pendulumClock();
 }
 
 
