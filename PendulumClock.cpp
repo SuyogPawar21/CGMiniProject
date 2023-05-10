@@ -73,12 +73,24 @@ void BresenhamCircleDrawingAlgo(float Cx, float Cy, float radius) {
 void pendulumClock() {
 	BresenhamCircleDrawingAlgo(0, 200, 150);
 	BresenhamCircleDrawingAlgo(0, 200, 125);
-	
-	int length = 15;
-	drawLine(110, 200 , 110 + length, 200);
-	drawLine(-110, 200, -110 - length, 200);
-	drawLine(0, 310, 0, 310 + length);
-	drawLine(0, 90, 0, 90 - length);
+        
+        float hourLength = 0 ;
+	// Draw markings for hours
+	for (int i = 0; i < 12; i++) {
+	  if( i == 0 || i == 3 || i ==6 || i==9){
+	        hourLength = 20;  
+	  }
+	  else{
+	        hourLength = 10; 
+	  }
+	  float angle = i * 30.0;
+	  float x1 = 125 * sin(degreeToRadian(angle));
+	  float y1 = 125 * cos(degreeToRadian(angle)) + 200;
+	  float x2 = (125 - hourLength) * sin(degreeToRadian(angle));
+	  float y2 = (125 - hourLength) * cos(degreeToRadian(angle)) + 200;
+	  drawLine(x1, y1, x2, y2);
+		
+	}
 	
 	drawLine(0, 200, -50 * sin(degreeToRadian(15.0)), 200 - 50 * cos(degreeToRadian(15.9)));
 	drawLine(0, 200, 100, 200);
